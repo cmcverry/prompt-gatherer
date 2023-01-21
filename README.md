@@ -1,6 +1,6 @@
 # Prompt Gatherer
 
-Prompt Gatherer is a microservice python program that is used by my Promptu app for creating randomized discussion prompts. 
+Prompt Gatherer is a microservice python program that is used by my Promptu app for gathering AI-generated random discussion prompts. 
 
 The microservice makes calls to OpenAI's Completions API and receives five questions related to social, philosophical, or economic subjects. The response 
 data are extracted, reformatted and written to a local JSON file where they might be accessed by other programs.
