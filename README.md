@@ -14,6 +14,7 @@ With a Python3 interpreter and pip installed on your system, in your terminal na
 1. Execute 'pip install -r requirements.txt' to install dependencies.
 2. Copy your OpenAI Secret API Key to a local txt file called 'api-key.txt'
 3. Execute 'Python ./prompt_gatherer.py' to run the program.
+4. (optional) Including a '-HT' tag in CLI execution will generate corresponding hashtags for each discussion prompt.
 
 By default the microservice uses 'social, philosophical or economic' as the default subject used by the AI to generate questions.
 You can override the default subject by including a string argument when executing the program in the terminal.
