@@ -42,7 +42,7 @@ def get_hashtags(prompts):
     prompts_w_hashtags = []
 
     for i in prompts:
-        prompt = f'Create one to three hashtags related to this questin: {i}'
+        prompt = f'Create one to three hashtags related to this question: {i}'
         url = "https://api.openai.com/v1/completions"
         payload= {'model': 'text-davinci-003', 'prompt': prompt, "max_tokens": 100, 'temperature': 0.3}
         headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {api_key}'}
