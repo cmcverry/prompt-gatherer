@@ -15,6 +15,10 @@ With a Python3 interpreter and pip installed on your system, in your terminal na
 2. Copy your OpenAI Secret API Key to a local txt file called 'api-key.txt'
 3. Execute 'Python ./prompt_gatherer.py' to run the program.
 
+By default the microservice uses 'social, philosophical or economic' as the default subject related the prompt questions generated.
+You can override the default subject by including a string argument when executing in the terminal.
+For example, executing { Python ./prompt_gatherer.py 'sports or movies' } would generate prompt questions related to sports or movies.
+
 For different output, changes can be made to the prompt/request sent to the OpenAI API by manually editing prompt_gatherer.py.
 Documentation on the OpenAI API can be found here: https://beta.openai.com/docs/api-reference/completions
 

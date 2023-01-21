@@ -1,5 +1,6 @@
 import json
 import requests
+import sys
 
 # Retrieves API secret key from txt file
 def get_api_key():
@@ -11,9 +12,13 @@ def get_api_key():
 
 # makes a call to get_api_key() and makes an HTTP post request to OpenAI's completions API
 # receives five questions from the OpenAI API, extracts them from the JSON response, and returns an array of strings of the 5 questions
-def get_prompts():
+def get_prompts(prompt_subject):
     api_key = get_api_key()
-    prompt = 'one deep, probing and fun question about social, philosophical, or economic subjects. ask what, why, or how. long question'
+    subject = "social, philosophical, or economic"
+    if prompt_subject:
+        subject = prompt_subject
+
+    prompt = f'one deep, probing and fun question about {subject}. ask what, why, or how. long question'
     url = "https://api.openai.com/v1/completions"
     payload= {'model': 'text-davinci-003', 'prompt': prompt, "max_tokens": 500, 'temperature': 0.9, 'n': 5}
     headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {api_key}'}
@@ -37,6 +42,10 @@ def export_prompts(arr):
 
 
 if __name__ == "__main__":
-    prompts = get_prompts()
+    prompt_subject = None
+    if len(sys.argv) > 1:
+        prompt_subject = sys.argv[1]
+
+    prompts = get_prompts(prompt_subject)
     export_prompts(prompts)
     
