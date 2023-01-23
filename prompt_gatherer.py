@@ -5,21 +5,21 @@ import sys
 
 # Retrieves API secret key from txt file
 def get_api_key():
-    with open('api-key.txt') as f:
-        lines = f.readlines() 
+    with open('api-key.json') as f:
+        obj = json.load(f)
         f.close()
-    return (lines[0])
+    return (obj["key"])
 
 
 # makes a call to get_api_key() and makes an HTTP post request to OpenAI's completions API
 # receives five questions from the OpenAI API, extracts them from the JSON response, and returns an array of strings of the 5 questions
 def get_prompts(prompt_subject):
     api_key = get_api_key()
-    subject = "social, philosophical, or economic"
+    subject = 'any'
     if prompt_subject:
         subject = prompt_subject
 
-    prompt = f'one deep, probing and fun question about {subject}. ask what, why, or how. long question'
+    prompt = f'one deep, probing and fun question about {subject} subjects. ask what, why, or how questions. long question'
     url = "https://api.openai.com/v1/completions"
     payload= {'model': 'text-davinci-003', 'prompt': prompt, "max_tokens": 500, 'temperature': 0.9, 'n': 5}
     headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {api_key}'}
@@ -51,7 +51,7 @@ def get_hashtags(prompts):
         print("status code:", r.status_code)
         response = json.loads(r.text)
         print(response)
-        prompts_w_hashtags.append((i, response["choices"][0]["text"]))
+        prompts_w_hashtags.append((i, response["choices"][0]["text"].replace('\n', ' ')))
 
     return prompts_w_hashtags
 
@@ -62,6 +62,11 @@ def export_prompts(arr):
     with open("prompts.json", "w") as out_file:
         json.dump(temp, out_file)
         out_file.close()
+
+def main():
+    prompts = get_prompts(None)
+    prompts = get_hashtags(prompts)
+    export_prompts(prompts)
 
 
 if __name__ == "__main__":
