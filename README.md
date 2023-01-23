@@ -1,5 +1,9 @@
 # Prompt Gatherer
 
+NOTE: this is a variant I deployed as a Google Cloud Function. It is mostly the same as the version on my master branch but instead of a api-key.txt file, it uses api-key.json in the format { "key": "your key" }. Currently, by default prompt_subjects is set to 'any' and hashtags are retrieved on each request.
+Documentation/tutorial for deployment can be found here: https://cloud.google.com/functions/docs/tutorials/http 
+
+
 Prompt Gatherer is a microservice python program that is used by my Promptu app for gathering AI-generated random discussion prompts. 
 
 The microservice makes calls to OpenAI's Completions API and receives five questions related to social, philosophical, or economic subjects. The response 
@@ -12,7 +16,7 @@ Usage of this microservice requires an OpenAI Secret API Key, which you will nee
 
 With a Python3 interpreter and pip installed on your system, in your terminal navigate to the directory containing this program. 
 1. Execute 'pip install -r requirements.txt' to install dependencies.
-2. Copy your OpenAI Secret API Key to a local txt file called 'api-key.txt'
+2. Copy your OpenAI Secret API Key to a local JSON file called 'api-key.json'
 3. Execute 'Python ./prompt_gatherer.py' to run the program.
 4. (optional) Including a '-HT' tag in CLI execution will generate corresponding hashtags for each discussion prompt.
 
