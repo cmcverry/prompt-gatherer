@@ -21,7 +21,7 @@ def get_prompts(prompt_subject):
 
     prompt = f'one deep, probing and fun question about {subject} subjects. ask what, why, or how questions. long question'
     url = "https://api.openai.com/v1/completions"
-    payload= {'model': 'text-davinci-003', 'prompt': prompt, "max_tokens": 500, 'temperature': 0.9, 'n': 5}
+    payload= {'model': 'text-davinci-003', 'prompt': prompt, "max_tokens": 1000, 'temperature': 0.9, 'n': 10}
     headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {api_key}'}
 
     r = requests.post(url, headers=headers, data=json.dumps(payload))
@@ -51,12 +51,12 @@ def get_hashtags(prompts):
         print("status code:", r.status_code)
         response = json.loads(r.text)
         print(response)
-        prompts_w_hashtags.append((i, response["choices"][0]["text"].replace('\n', ' ')))
+        prompts_w_hashtags.append((i, response["choices"][0]["text"].replace('\n', '')))
 
     return prompts_w_hashtags
 
 
-# Receives an array of strings (5 questions), encapsulates the array inside a dictionary and writes it to a json file
+# Receives an array of strings (10 questions), encapsulates the array inside a dictionary and writes it to a json file
 def export_prompts(arr):
     temp = {'prompt_list': arr}
     with open("prompts.json", "w") as out_file:

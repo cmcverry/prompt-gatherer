@@ -3,7 +3,7 @@ import json
 import prompt_gatherer
 
 @functions_framework.http
-def http_prompts_gatherer(request):
+def http_prompt_gatherer(request):
 
         if request.method == 'GET':
             prompt_gatherer.main()
