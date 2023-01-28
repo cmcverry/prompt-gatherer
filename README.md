@@ -18,7 +18,7 @@ With a Python3 interpreter and pip installed on your system, in your terminal na
 
 By default the microservice uses 'social, philosophical or economic' as the default subject used by the AI to generate questions.
 You can override the default subject by including a string argument when executing the program in the terminal.
-For example, executing { Python ./prompt_gatherer.py 'sports or movies' } would generate prompt questions related to sports or movies.
+For example, executing 'Python ./prompt_gatherer.py sports or movies' would generate prompt questions related to sports or movies.
 
 For different output, changes can be made to the prompt/request sent to the OpenAI API by manually editing prompt_gatherer.py.
 Documentation on the OpenAI API can be found here: https://beta.openai.com/docs/api-reference/completions
